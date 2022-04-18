@@ -1,0 +1,23 @@
+.service-container {
+    width: 320px;
+    border: 1px solid rgb(189, 181, 181);
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+
+}
+
+.service-container:hover {
+    cursor: pointer;
+    box-shadow: 5px 5px rgb(227, 227, 227);
+    background-color: rgb(243, 241, 241);
+}
+
+.service-container img {
+    height: 300px;
+    width: 300px;
+    padding: 3px;
+    border-radius: 10px;
+}
