@@ -12,6 +12,7 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
+        <Route path='/service/:serviceId'></Route>
         <Route path='/about' element={<About></About>}></Route>
 
       </Routes>

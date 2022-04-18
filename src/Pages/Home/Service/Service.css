@@ -12,7 +12,7 @@
 .service-container:hover {
     cursor: pointer;
     box-shadow: 5px 5px rgb(227, 227, 227);
-    background-color: rgb(243, 241, 241);
+
 }
 
 .service-container img {
