@@ -19,12 +19,12 @@ const Register = () => {
         navigate('/home');
     }
     const handleRegister = event => {
-        event.prevenrDefault();
+        event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-        console.log(email);
-        // createUserWithEmailAndPassword(email, password);
+        // console.log(email);
+        createUserWithEmailAndPassword(email, password);
     }
     return (
         <div className='register-form'>
