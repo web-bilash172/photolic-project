@@ -4,8 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Register.css'
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
+// register component 
 const Register = () => {
     const [
+        // creating user for registration 
         createUserWithEmailAndPassword,
         user,
         loading,
@@ -18,6 +20,7 @@ const Register = () => {
     if (user) {
         navigate('/home');
     }
+    // this function will submit the information when you will click submit button 
     const handleRegister = event => {
         event.preventDefault();
         const name = event.target.name.value;
@@ -29,14 +32,13 @@ const Register = () => {
     return (
         <div className='register-form'>
             <h1 className='text-center mt-5 mb-3'>Please Register..!!</h1>
+            {/* register form  */}
             <form onSubmit={handleRegister}>
                 <input type="text" name="name" id="" placeholder='Your Name' />
 
                 <input type="email" name="email" id="" placeholder='Email Address' required />
 
                 <input type="password" name="password" id="" placeholder='Password' required />
-                {/* <input type="checkbox" name="terms" id="terms" /> */}
-                {/* <label className={agree ? 'ps-2': 'ps-2 text-danger'} htmlFor="terms">Accept Genius Car Terms and Conditions</label> */}
 
                 <input
 
