@@ -1,18 +1,31 @@
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../../firebase.init';
 
 const Login = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
     const navigate = useNavigate();
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
     const handleSubmit = event => {
         event.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.valuel;
+        signInWithEmailAndPassword(email, password);
     }
     const navigateRegister = event => {
         navigate('/register')
+    };
+    if (user) {
+        navigate('/home');
     }
 
     return (
@@ -38,7 +51,7 @@ const Login = () => {
                     Submit
                 </Button>
             </Form>
-            <p>New To Photlic? <Link onClick={navigateRegister} className='text-danger'>Please Register</Link> </p>
+            <p>New To Photlic? <Link to={'/register'} onClick={navigateRegister} className='text-danger pe-auto text-decoration-none'>Please Register</Link> </p>
         </div>
     );
 };
