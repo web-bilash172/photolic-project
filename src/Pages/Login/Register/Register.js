@@ -2,8 +2,9 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import './Register.css'
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
+import SocialLogin from '../SocialLogin/SocialLogin';
 // register component 
 const Register = () => {
     const [
@@ -12,22 +13,28 @@ const Register = () => {
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const navigate = useNavigate();
     const navigateLogin = () => {
         navigate('/login');
     };
     if (user) {
-        navigate('/home');
+
     }
     // this function will submit the information when you will click submit button 
-    const handleRegister = event => {
+    const handleRegister = async event => {
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
         // console.log(email);
-        createUserWithEmailAndPassword(email, password);
+
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name });
+        alert('Updated profile');
+        navigate('/home');
+
     }
     return (
         <div className='register-form'>
@@ -47,6 +54,7 @@ const Register = () => {
                     value="Register" />
             </form>
             <p>Already have an account? <Link to="/login" onClick={navigateLogin} className='text-primary pe-auto text-decoration-none'>Please Login</Link> </p>
+            <SocialLogin></SocialLogin>
         </div>
     );
 };
